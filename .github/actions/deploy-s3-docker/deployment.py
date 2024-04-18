@@ -13,7 +13,7 @@ def run():
     
     for root, subdirs, files in os.walk(dist_folder):
         for file in files:
-            s3_client.upload_file(ps.path.join(root, file), bucket, file)
+            s3_client.upload_file(os.path.join(root, file), bucket, file)
             
     website_url = f'http://{bucket}.s3-website-{bucket_region}.amazonaws.com'
     print(f'::set-output name=website-url::{website_url}')
